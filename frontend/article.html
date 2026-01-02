@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article - Global News Network</title>
+    <link rel="icon" type="image/x-icon" href="../assets/Icon.ico">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        .article-header {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .article-main-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .article-content-text {
+            font-size: var(--text-lg);
+            line-height: 1.8;
+            color: var(--text-light);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .article-content-text p {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .article-info {
+            background-color: white;
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .article-meta-full {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-lg);
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .related-articles {
+            margin-top: var(--spacing-xl);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+            color: var(--primary-light);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            color: var(--medium-blue);
+        }
+
+        @media (max-width: 768px) {
+            .article-content-text {
+                font-size: var(--text-base);
+            }
+
+            .article-meta-full {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--spacing-sm);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo-section">
+                    <img src="../assets/logo.png" alt="Global News Network" class="logo">
+                    <h1 class="site-title">Global News Network</h1>
+                </div>
+                <div class="header-actions">
+                    <div class="search-container">
+                        <form method="GET" action="../search.php" style="display: flex;">
+                            <input type="text" name="search" placeholder="Search news..." class="search-input">
+                            <button type="submit" class="search-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <path d="m21 21-4.35-4.35"></path>
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="auth-buttons" id="authButtons">
+                        <button class="btn btn-outline" onclick="openModal('loginModal')">Login</button>
+                        <button class="btn btn-primary" onclick="openModal('registerModal')">Register</button>
+                    </div>
+                    <div class="user-menu hidden" id="userMenu">
+                        <span class="username" id="usernameDisplay"></span>
+                        <button class="btn btn-outline" id="logoutBtn">Logout</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="../index.php" class="nav-link">Home</a></li>
+                    <li><a href="../index.php?category=1" class="nav-link">Politics</a></li>
+                    <li><a href="../index.php?category=2" class="nav-link">Technology</a></li>
+                    <li><a href="../index.php?category=3" class="nav-link">Sports</a></li>
+                    <li><a href="../index.php?category=4" class="nav-link">Entertainment</a></li>
+                    <li><a href="../index.php?category=5" class="nav-link">Business</a></li>
+                    <li><a href="../index.php?category=6" class="nav-link">Health</a></li>
+                    <li><a href="../index.php?category=7" class="nav-link">World</a></li>
+                    <li><a href="../index.php?category=8" class="nav-link">Science</a></li>
+                </ul>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <a href="javascript:history.back()" class="back-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="m12 19-7-7 7-7"></path>
+                    <path d="M19 12H5"></path>
+                </svg>
+                Back to News
+            </a>
+
+            <article class="article-header" id="articleContent">
+                <!-- Article content will be loaded here -->
+                <div class="article-info">
+                    <div class="article-meta-full">
+                        <span class="article-category" id="articleCategory">Loading...</span>
+                        <span id="articleAuthor">Loading...</span>
+                        <span id="articleDate">Loading...</span>
+                        <span id="articleViews">Loading...</span>
+                    </div>
+
+                    <h1 id="articleTitle">Loading Article...</h1>
+
+                    <p class="article-summary" id="articleSummary"
+                        style="font-size: var(--text-lg); color: var(--medium-blue); margin-top: var(--spacing-md);">
+                        <!-- Summary will be loaded here -->
+                    </p>
+                </div>
+
+                <img id="articleImage" class="article-main-image" style="display: none;">
+
+                <div class="article-content-text" id="articleText">
+                    <!-- Article content will be loaded here -->
+                </div>
+            </article>
+
+            <section class="related-articles" id="relatedArticles" style="display: none;">
+                <h2 class="section-title">Related Articles</h2>
+                <div class="news-grid" id="relatedGrid">
+                    <!-- Related articles will be loaded here -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="../assets/logo.png" alt="Global News Network" class="footer-logo-img">
+                        <h3>Global News Network</h3>
+                    </div>
+                    <p class="footer-description">Your trusted source for breaking news and in-depth analysis from
+                        around the world.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Categories</h4>
+                    <ul class="footer-links">
+                        <li><a href="../category.php?category=1">Politics</a></li>
+                        <li><a href="../category.php?category=2">Technology</a></li>
+                        <li><a href="../category.php?category=3">Sports</a></li>
+                        <li><a href="../category.php?category=4">Entertainment</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link">Facebook</a>
+                        <a href="#" class="social-link">Twitter</a>
+                        <a href="#" class="social-link">Instagram</a>
+                        <a href="#" class="social-link">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Global News Network. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Login</h3>
+                <button class="modal-close" onclick="closeModal('loginModal')">&times;</button>
+            </div>
+            <form method="POST" action="../backend/auth/login.php" class="modal-form">
+                <div class="form-group">
+                    <label for="loginUsername">Username or Email</label>
+                    <input type="text" id="loginUsername" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Register</h3>
+                <button class="modal-close" onclick="closeModal('registerModal')">&times;</button>
+            </div>
+            <form method="POST" action="../backend/auth/register.php" class="modal-form">
+                <div class="form-group">
+                    <label for="registerUsername">Username</label>
+                    <input type="text" id="registerUsername" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Minimal Inline JavaScript -->
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function toggleMobileMenu() {
+            const nav = document.querySelector('.nav-list');
+            nav.classList.toggle('mobile-open');
+        }
+
+        // Close modals when clicking outside
+        window.onclick = function (event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        };
+    </script>
+</body>
+
+</html>
