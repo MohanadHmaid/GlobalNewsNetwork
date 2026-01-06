@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  # PHP Application Service
+  app:
+    build: .
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/var/www/html
+    environment:
+      - DB_HOST=db
+      - DB_NAME=global_news_network
+      - DB_USER=root
+      - DB_PASSWORD=root_password
+    depends_on:
+      - db
+    networks:
+      - news-network
+
+  # MySQL Database Service
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: global_news_network
+      MYSQL_ROOT_PASSWORD: root_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./src/database/news_db.sql:/docker-entrypoint-initdb.d/news_db.sql
+    networks:
+      - news-network
+
+networks:
+  news-network:
+    driver: bridge
+
+volumes:
+  db_data:

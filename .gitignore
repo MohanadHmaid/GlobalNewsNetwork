@@ -1,0 +1,14 @@
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# Database
+db_data/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/

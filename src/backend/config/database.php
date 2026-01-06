@@ -1,11 +1,19 @@
 <?php
 // Database configuration
 class Database {
-    private $host = 'localhost';
-    private $db_name = 'global_news_network';
-    private $username = 'root';
-    private $password = '';
+    private $host;
+    private $db_name;
+    private $username;
+    private $password;
     private $conn;
+
+    // Get database connection
+    public function __construct() {
+        $this->host = getenv('DB_HOST') ?: 'localhost';
+        $this->db_name = getenv('DB_NAME') ?: 'global_news_network';
+        $this->username = getenv('DB_USER') ?: 'root';
+        $this->password = getenv('DB_PASSWORD') ?: '';
+    }
 
     // Get database connection
     public function getConnection() {
