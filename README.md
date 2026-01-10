@@ -80,3 +80,6 @@ cd repo``
 4. Creating a docker compose file with MySQL
 
 5. Test The DB and the project
+
+## Production URL 
+Here the url where in Back4App gave me https://globalnewsnetwork-6a775l51.b4a.run/
