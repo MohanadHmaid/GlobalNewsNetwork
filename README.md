@@ -65,3 +65,18 @@ The application uses environment variables for database connection, which are ma
 - Category-based News Filtering
 - Featured and Breaking News Sections
 - Search Functionality
+
+## Steps to upload on a vps
+1. Update the system
+
+2. Download docker & docker compose
+
+3. Clone Github Repo
+
+``cd /opt
+git clone https://github.com/MohanadHmaid/GlobalNewsNetwork.git
+cd repo``
+
+4. Creating a docker compose file with MySQL
+
+5. Test The DB and the project
